@@ -1,0 +1,22 @@
+#!/bin/sh
+YAD="yad --window-icon=evince --name=${0##*/}"
+eval $($YAD --title="ImgPDF" --button="Convert:0" --button="gtk-quit:1" --text="Convert your all images in PDF" \
+    --form  --field="Choose folder contain images::DIR"  --field="Output pdf file name:"\
+     | awk -F'|' '{printf "FILENAME=%s\nOP=%s\n", $1, $2}')
+
+if [ $(convert $FILENAME/*.* $OP.pdf 2> /dev/null) ]; then
+{
+my=$(pwd)
+eval $($YAD --title="Output Dialog" --text="Output pdf file generated at $my/$OP.pdf" --button="gtk-open:0" --button="gtk-cancel:1")
+echo $?
+case $? in
+         0)
+                evince $my/$OP.pdf;;
+		
+         *)
+                exit;;
+esac
+}
+fi
+
+

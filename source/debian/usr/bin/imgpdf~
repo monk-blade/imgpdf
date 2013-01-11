@@ -1,0 +1,16 @@
+#!/bin/sh
+YAD="yad --window-icon=web-browser --name=${0##*/}"
+eval $($YAD --title="ImgPDF" --text="Convert your all images in PDF" \
+    --form --field="Choose folder contain images::DIR" --field="Output pdf file name:"\
+     | awk -F'|' '{printf "FILENAME=\"%s\"\nOP=%s\n", $1, $2}')
+
+#$YAD --title="Upload to picasa" --text="Upload to Picasa" --form  --field="Title:" --directory --field="Directory::DIR"
+convert $FILENAME/*.* $OP.pdf
+my=$(pwd)
+eval $($YAD --title="Output Dialog" --text="Output pdf file generated at $my/$OP.pdf" --button="gtk-open:0" --button="gtk-cancel:1")
+case $? in
+         0)
+                evince $my/$OP.pdf;;
+         *)
+                exit;;
+esac

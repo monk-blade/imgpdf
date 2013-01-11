@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.1
+Name=ImgPDF
+Comment=Image to PDF Converter
+GenericName=ImgPDF
+Exec=/usr/bin/imgpdf
+Icon=evince
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Categories=GNOME;System;
