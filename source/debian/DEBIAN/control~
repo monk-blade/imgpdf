@@ -1,9 +1,0 @@
-Package: imgpdf
-Version: 1.1
-Section: utils
-Priority: optional
-Architecture: all
-Depends: zenity (>= 3.4.0), awk, imagemagick
-Maintainer: Arpan Chavda <codejarcc@gmail.com>
-Description: Image to PDF Converter
- This utility convert bunch of images to one pdf file.
